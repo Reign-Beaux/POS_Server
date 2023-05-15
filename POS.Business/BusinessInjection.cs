@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using POS.Business.Areas;
+using POS.Business.Articles;
 using POS.Business.ArticlesTypes;
 using POS.Business.Employess;
 using POS.Business.Login;
@@ -15,6 +16,7 @@ namespace POS.Business
     public static IServiceCollection AddBusinessInjection(this IServiceCollection services)
     {
       services.AddScoped<IAreasService, AreasService>();
+      services.AddScoped<IArticlesService, ArticlesService>();
       services.AddScoped<IArticlesTypesService, ArticlesTypesService>();
       services.AddScoped<IEmployeesService, EmployeeService>();
       services.AddScoped<ILoginService, LoginService>();

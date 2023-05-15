@@ -1,4 +1,5 @@
 ﻿using POS.Data.Areas;
+using POS.Data.Articles;
 using POS.Data.ArticleTypes;
 using POS.Data.Employees;
 using POS.Data.Features;
@@ -12,6 +13,7 @@ namespace POS.Data.UnitsOfWork
   public interface IUnitOfWork : IDisposable
   {
     public IAreasRepository AreasRepository { get; }
+    public IArticlesRepository ArticlesRepository { get; }
     public IArticlesTypesRepository ArticlesTypesRepository { get; }
     public IEmployeesRepository EmployeesRepository { get; }
     public IFeaturesRepository FeaturesRepository { get; }

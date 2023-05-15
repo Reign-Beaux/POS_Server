@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using POS.Data.Areas;
+using POS.Data.Articles;
 using POS.Data.ArticleTypes;
 using POS.Data.Employees;
 using POS.Data.Features;
@@ -19,6 +20,7 @@ namespace POS.Data.UnitsOfWork
     private readonly IDbTransaction _dbTransaction;
 
     public IAreasRepository AreasRepository { get; }
+    public IArticlesRepository ArticlesRepository { get; }
     public IArticlesTypesRepository ArticlesTypesRepository { get; }
     public IEmployeesRepository EmployeesRepository { get; }
     public IFeaturesRepository FeaturesRepository { get; }
@@ -35,6 +37,7 @@ namespace POS.Data.UnitsOfWork
       _dbTransaction = _dbConnection.BeginTransaction();
 
       AreasRepository = new AreasRepository(_dbTransaction);
+      ArticlesRepository = new ArticlesRepository(_dbTransaction);
       ArticlesTypesRepository = new ArticlesTypesRepository(_dbTransaction);
       EmployeesRepository = new EmployeesRepository(_dbTransaction);
       FeaturesRepository = new FeaturesRepository(_dbTransaction);
