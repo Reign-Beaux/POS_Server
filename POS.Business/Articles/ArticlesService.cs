@@ -1,4 +1,5 @@
-﻿using POS.Common.Models;
+﻿using POS.Common.DTOs;
+using POS.Common.Models;
 using POS.Data.UnitsOfWork;
 
 namespace POS.Business.Articles
@@ -7,7 +8,7 @@ namespace POS.Business.Articles
   {
     public ArticlesService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-    public async Task<List<Article>> GetArticles()
+    public async Task<List<ArticleDTO>> GetArticles()
       => await _unitOfWork.ArticlesRepository.GetArticles();
 
     public async Task<Article> GetArticleById(int articleId)

@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using POS.Common.DTOs;
 using POS.Common.Models;
 using System.Data;
 
@@ -8,10 +9,10 @@ namespace POS.Data.Articles
   {
     public ArticlesRepository(IDbTransaction dbTransaction) : base(dbTransaction) { }
 
-    public async Task<List<Article>> GetArticles()
+    public async Task<List<ArticleDTO>> GetArticles()
     {
       string spString = "[dbo].[Usp_Articles_CON]";
-      return (await _dbConnection.QueryAsync<Article>(spString, transaction: _dbTransaction)).ToList();
+      return (await _dbConnection.QueryAsync<ArticleDTO>(spString, transaction: _dbTransaction)).ToList();
     }
 
     public async Task<Article> GetArticleById(int articleId)
