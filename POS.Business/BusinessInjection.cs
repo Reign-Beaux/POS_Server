@@ -3,6 +3,7 @@ using POS.Business.Areas;
 using POS.Business.Articles;
 using POS.Business.ArticlesTypes;
 using POS.Business.Employess;
+using POS.Business.Inventories;
 using POS.Business.Login;
 using POS.Business.Roles;
 using POS.Business.Selects;
@@ -19,6 +20,7 @@ namespace POS.Business
       services.AddScoped<IArticlesService, ArticlesService>();
       services.AddScoped<IArticlesTypesService, ArticlesTypesService>();
       services.AddScoped<IEmployeesService, EmployeeService>();
+      services.AddScoped<IInventoriesService, InventoriesService>();
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRolesService, RolesService>();
       services.AddScoped<ISelectsService, SelectService>();

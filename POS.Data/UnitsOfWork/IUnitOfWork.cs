@@ -3,6 +3,7 @@ using POS.Data.Articles;
 using POS.Data.ArticleTypes;
 using POS.Data.Employees;
 using POS.Data.Features;
+using POS.Data.Inventories;
 using POS.Data.Login;
 using POS.Data.Roles;
 using POS.Data.Selects;
@@ -17,6 +18,7 @@ namespace POS.Data.UnitsOfWork
     public IArticlesTypesRepository ArticlesTypesRepository { get; }
     public IEmployeesRepository EmployeesRepository { get; }
     public IFeaturesRepository FeaturesRepository { get; }
+    public IInventoriesRepository InventoriesRepository { get; }
     public ILoginRepository LoginRepository { get; }
     public IRolesRepository RolesRepository { get; }
     public ISelectsRepository SelectsRepository { get; }
