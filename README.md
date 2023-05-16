@@ -1,6 +1,6 @@
 # API Rest para un punto de ventas
 
-![Version](https://img.shields.io/badge/Version-1.0-blue)
+![Version](https://img.shields.io/badge/Version-Alpha-blue)
 ![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-yellow)
 
 > Breve descripción del proyecto y su propósito.
