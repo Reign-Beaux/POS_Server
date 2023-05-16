@@ -7,7 +7,7 @@
 
 La API Rest para un punto de ventas es un proyecto que proporciona una interfaz de programación de aplicaciones (API) para administrar operaciones de un punto de ventas.
 
-> Estructura
+> Estructura.
 
 - **API:** Esta capa esta encargada de recibir las peticiones del cliente.
 - **Business:** La función principal es ejecutar la lógica del negocio.
