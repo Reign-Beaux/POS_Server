@@ -8,6 +8,7 @@ using POS.Data.Inventories;
 using POS.Data.Login;
 using POS.Data.Roles;
 using POS.Data.Selects;
+using POS.Data.Suppliers;
 using POS.Data.Users;
 
 namespace POS.Data.UnitsOfWork
@@ -24,6 +25,7 @@ namespace POS.Data.UnitsOfWork
     public ILoginRepository LoginRepository { get; }
     public IRolesRepository RolesRepository { get; }
     public ISelectsRepository SelectsRepository { get; }
+    public ISuppliersRepository SuppliersRepository { get; }
     public IUsersRepository UsersRepository { get; }
     public void Commit();
   }

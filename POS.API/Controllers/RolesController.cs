@@ -17,7 +17,7 @@ namespace POS.API.Controllers
     public async Task<ActionResult> GetRoles()
       => Ok(await _service.GetRoles());
 
-    [HttpGet("{RoleId:int}")]
+    [HttpGet("{roleId:int}")]
     public async Task<ActionResult> GetRoleById(int roleId)
       => Ok(await _service.GetRoleById(roleId));
 
@@ -29,7 +29,7 @@ namespace POS.API.Controllers
     public async Task<ActionResult> UpdateRole(Role role)
       => Ok(await _service.UpdateRole(role));
 
-    [HttpDelete("{RoleId:int}")]
+    [HttpDelete("{roleId:int}")]
     public async Task<ActionResult> DeleteRole(int roleId)
       => Ok(await _service.DeleteRole(roleId));
   }

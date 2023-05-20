@@ -17,7 +17,7 @@ namespace POS.API.Controllers
     public async Task<ActionResult> GetBrands()
       => Ok(await _service.GetBrands());
 
-    [HttpGet("{BrandId:int}")]
+    [HttpGet("{brandId:int}")]
     public async Task<ActionResult> GetBrandById(int brandId)
       => Ok(await _service.GetBrandById(brandId));
 
@@ -29,7 +29,7 @@ namespace POS.API.Controllers
     public async Task<ActionResult> UpdateBrand(Brand brand)
       => Ok(await _service.UpdateBrand(brand));
 
-    [HttpDelete("{BrandId:int}")]
+    [HttpDelete("{brandId:int}")]
     public async Task<ActionResult> DeleteBrand(int brandId)
       => Ok(await _service.DeleteBrand(brandId));
   }

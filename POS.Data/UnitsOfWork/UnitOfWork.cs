@@ -9,6 +9,7 @@ using POS.Data.Inventories;
 using POS.Data.Login;
 using POS.Data.Roles;
 using POS.Data.Selects;
+using POS.Data.Suppliers;
 using POS.Data.Users;
 using System.Data;
 using System.Data.SqlClient;
@@ -31,6 +32,7 @@ namespace POS.Data.UnitsOfWork
     public ILoginRepository LoginRepository { get; }
     public IRolesRepository RolesRepository { get; }
     public ISelectsRepository SelectsRepository { get; }
+    public ISuppliersRepository SuppliersRepository { get; }
     public IUsersRepository UsersRepository { get; }
 
     public UnitOfWork(IConfiguration configuration)
@@ -50,6 +52,7 @@ namespace POS.Data.UnitsOfWork
       LoginRepository = new LoginRepository(_dbTransaction);
       RolesRepository = new RolesRepository(_dbTransaction);
       SelectsRepository = new SelectsRepository(_dbTransaction);
+      SuppliersRepository = new SuppliersRepository(_dbTransaction);
       UsersRepository = new UsersRepository(_dbTransaction);
     }
 
