@@ -2,6 +2,7 @@
 using POS.Data.Areas;
 using POS.Data.Articles;
 using POS.Data.ArticleTypes;
+using POS.Data.Brands;
 using POS.Data.Employees;
 using POS.Data.Features;
 using POS.Data.Inventories;
@@ -23,6 +24,7 @@ namespace POS.Data.UnitsOfWork
     public IAreasRepository AreasRepository { get; }
     public IArticlesRepository ArticlesRepository { get; }
     public IArticlesTypesRepository ArticlesTypesRepository { get; }
+    public IBrandsRepository BrandsRepository { get; }
     public IEmployeesRepository EmployeesRepository { get; }
     public IFeaturesRepository FeaturesRepository { get; }
     public IInventoriesRepository InventoriesRepository { get; }
@@ -41,6 +43,7 @@ namespace POS.Data.UnitsOfWork
       AreasRepository = new AreasRepository(_dbTransaction);
       ArticlesRepository = new ArticlesRepository(_dbTransaction);
       ArticlesTypesRepository = new ArticlesTypesRepository(_dbTransaction);
+      BrandsRepository = new BrandsRepository(_dbTransaction);
       EmployeesRepository = new EmployeesRepository(_dbTransaction);
       FeaturesRepository = new FeaturesRepository(_dbTransaction);
       InventoriesRepository = new InventoriesRepository(_dbTransaction);
