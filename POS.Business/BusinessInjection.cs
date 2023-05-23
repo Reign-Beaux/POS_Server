@@ -8,6 +8,7 @@ using POS.Business.Inventories;
 using POS.Business.Login;
 using POS.Business.Roles;
 using POS.Business.Selects;
+using POS.Business.Suppliers;
 using POS.Business.Users;
 using POS.Data;
 
@@ -26,6 +27,7 @@ namespace POS.Business
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IRolesService, RolesService>();
       services.AddScoped<ISelectsService, SelectService>();
+      services.AddScoped<ISuppliersService, SuppliersService>();
       services.AddScoped<IUsersService, UsersService>();
       services.AddDataInjection();
 
