@@ -20,6 +20,10 @@ namespace POS.API.Controllers
     public async Task<ActionResult> GetArticlesTypes()
       => Ok(await _service.GetArticlesTypes());
 
+    [HttpGet("GetBrands")]
+    public async Task<ActionResult> GetBrands()
+      => Ok(await _service.GetBrands());
+
     [HttpGet("GetEmployees")]
     public async Task<ActionResult> GetEmployees()
       => Ok(await _service.GetEmployees());

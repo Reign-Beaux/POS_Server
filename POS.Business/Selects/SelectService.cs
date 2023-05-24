@@ -13,6 +13,9 @@ namespace POS.Business.Selects
     public async Task<List<SelectDTO>> GetArticlesTypes()
       => await _unitOfWork.SelectsRepository.GetArticlesTypes();
 
+    public async Task<List<SelectDTO>> GetBrands()
+      => await _unitOfWork.SelectsRepository.GetBrands();
+
     public async Task<List<SelectDTO>> GetEmployees()
       => await _unitOfWork.SelectsRepository.GetEmployees();
 

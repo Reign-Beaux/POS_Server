@@ -3,7 +3,7 @@
   public class SupplierDTO
   {
     public int Id { set; get; }
-    public int BrandDescription { set; get; }
+    public string BrandDescription { set; get; }
     public string Name { set; get; }
     public string PaternalSurname { set; get; }
     public string MaternalSurname { set; get; }

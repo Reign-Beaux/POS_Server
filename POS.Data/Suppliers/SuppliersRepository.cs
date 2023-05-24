@@ -27,14 +27,14 @@ namespace POS.Data.Suppliers
 
     public async Task<int> PostSupplier(Supplier supplier)
     {
-      var spString = "[dbo].[Usp_Suppliers_INS] @pi_BrandId, @ps_Name, @ps_PaternalSurname, @ps_MaternalSurname, @ps_RFC, @ps_Phone, @ps_Cellphone, @ps_Observations";
+      var spString = "[dbo].[Usp_Suppliers_INS] @pi_BrandId, @ps_Name, @ps_PaternalSurname, @ps_MaternalSurname, @ps_RFC, @ps_Phone, @ps_Cellphone, @ps_Observations, @ps_Email";
       try
       {
         return (await _dbConnection.QueryAsync<int>(
           spString,
           new
           {
-            pi_BrandId = supplier.Id,
+            pi_BrandId = supplier.BrandId,
             ps_Name = supplier.Name,
             ps_PaternalSurname = supplier.PaternalSurname,
             ps_MaternalSurname = supplier.MaternalSurname,
@@ -42,6 +42,7 @@ namespace POS.Data.Suppliers
             ps_Phone = supplier.Phone,
             ps_Cellphone = supplier.Cellphone,
             ps_Observations = supplier.Observations,
+            ps_Email = supplier.Email,
           },
           transaction: _dbTransaction)
         ).FirstOrDefault();

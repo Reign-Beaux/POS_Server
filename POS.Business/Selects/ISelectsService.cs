@@ -6,6 +6,7 @@ namespace POS.Business.Selects
   {
     Task<List<SelectDTO>> GetAreas();
     Task<List<SelectDTO>> GetArticlesTypes();
+    Task<List<SelectDTO>> GetBrands();
     Task<List<SelectDTO>> GetEmployees();
     Task<List<SelectDTO>> GetRoles();
   }
