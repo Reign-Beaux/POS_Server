@@ -14,9 +14,9 @@ namespace POS.Business.Purchases
     public async Task<Purchase> GetPurchaseById(int PurchaseId)
       => await _unitOfWork.PurchasesRepository.GetPurchaseById(PurchaseId);
 
-    public async Task<POSTransactionResult> PostPurchase(Purchase Purchase)
+    public async Task<POSTransactionResult> PostPurchase(int supplierId, string userName)
     {
-      var idResult = await _unitOfWork.PurchasesRepository.PostPurchase(Purchase);
+      var idResult = await _unitOfWork.PurchasesRepository.PostPurchase(supplierId, userName);
       _unitOfWork.Commit();
 
       return new() { IntegerReturnValue = idResult };

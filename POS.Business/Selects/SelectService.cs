@@ -21,5 +21,11 @@ namespace POS.Business.Selects
 
     public async Task<List<SelectDTO>> GetRoles()
       => await _unitOfWork.SelectsRepository.GetRoles();
+
+    public async Task<List<SelectDTO>> GetSuppliers()
+      => await _unitOfWork.SelectsRepository.GetSuppliers();
+
+    public async Task<List<SelectDTO>> GetUsers()
+      => await _unitOfWork.SelectsRepository.GetUsers();
   }
 }

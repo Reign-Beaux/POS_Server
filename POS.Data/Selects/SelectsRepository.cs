@@ -37,5 +37,20 @@ namespace POS.Data.Selects
       var query = "SELECT [R].[Id] AS [Value], [R].[Description] AS [Text] FROM [dbo].[Roles] [R]";
       return (await _dbConnection.QueryAsync<SelectDTO>(query, transaction: _dbTransaction)).ToList();
     }
+
+    public async Task<List<SelectDTO>> GetSuppliers()
+    {
+      var query = "SELECT [S].[Id] AS [Value], CONCAT([S].[Name], ' ', [S].[PaternalSurname], ' ', [S].[MaternalSurname]) AS [Text] FROM [dbo].[Suppliers] [S]";
+      return (await _dbConnection.QueryAsync<SelectDTO>(query, transaction: _dbTransaction)).ToList();
+    }
+
+    public async Task<List<SelectDTO>> GetUsers()
+    {
+      var query =
+        "SELECT [U].[Id] AS [Value], CONCAT([E].[Name], ' ', [E].[PaternalSurname], ' ', [E].[MaternalSurname]) AS [Text]" +
+        "FROM [dbo].[Users] [U]" +
+        "INNER JOIN [dbo].[Employees] [E] ON [E].[Id] = [U].[EmployeeId]";
+      return (await _dbConnection.QueryAsync<SelectDTO>(query, transaction: _dbTransaction)).ToList();
+    }
   }
 }

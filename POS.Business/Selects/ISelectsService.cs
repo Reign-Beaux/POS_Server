@@ -9,5 +9,7 @@ namespace POS.Business.Selects
     Task<List<SelectDTO>> GetBrands();
     Task<List<SelectDTO>> GetEmployees();
     Task<List<SelectDTO>> GetRoles();
+    Task<List<SelectDTO>> GetSuppliers();
+    Task<List<SelectDTO>> GetUsers();
   }
 }

@@ -22,8 +22,8 @@ namespace POS.API.Controllers
       => Ok(await _service.GetPurchaseById(purchaseId));
 
     [HttpPost]
-    public async Task<ActionResult> PostPurchase(Purchase purchase)
-      => Ok(await _service.PostPurchase(purchase));
+    public async Task<ActionResult> PostPurchase([FromBody] int supplierId, [FromBody] string userName)
+      => Ok(await _service.PostPurchase(supplierId, userName));
 
     [HttpPut]
     public async Task<ActionResult> UpdatePurchase(Purchase purchase)

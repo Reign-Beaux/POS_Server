@@ -25,21 +25,17 @@ namespace POS.Data.Purchases
       return response.FirstOrDefault();
     }
 
-    public async Task<int> PostPurchase(Purchase purchase)
+    public async Task<int> PostPurchase(int supplierId, string userName)
     {
-      var spString = "[dbo].[Usp_Purchases_INS] @pi_SupplierId, @pi_UserId, @pd_Subtotal, @pd_Taxes, @pd_Total, @pdt_OrderDate";
+      var spString = "[dbo].[Usp_Purchases_INS] @pi_SupplierId, @pi_Username";
       try
       {
         return (await _dbConnection.QueryAsync<int>(
           spString,
           new
           {
-            pi_SupplierId = purchase.SupplierId,
-            pi_UserId = purchase.UserId,
-            pd_Subtotal = purchase.Subtotal,
-            pd_Taxes = purchase.Taxes,
-            pd_Total = purchase.Total,
-            pdt_OrderDate = purchase.OrderDate,
+            pi_SupplierId = supplierId,
+            pi_Username = userName,
           },
           transaction: _dbTransaction)
         ).FirstOrDefault();
