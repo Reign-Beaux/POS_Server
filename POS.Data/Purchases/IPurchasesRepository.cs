@@ -7,8 +7,8 @@ namespace POS.Data.Purchases
   {
     Task<List<PurchaseDTO>> GetPurchases();
     Task<Purchase> GetPurchaseById(int purchaseId);
-    Task<int> PostPurchase(int supplierId, string userName);
-    Task<int> UpdatePurchase(Purchase purchase);
+    Task<int> PostPurchase(PurchaseRequestDTO purchaseRequest);
+    Task<int> UpdatePurchase(PurchaseRequestDTO purchaseRequest);
     Task<int> DeletePurchase(int purchaseId);
   }
 }

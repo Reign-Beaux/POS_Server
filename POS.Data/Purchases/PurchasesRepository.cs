@@ -25,7 +25,7 @@ namespace POS.Data.Purchases
       return response.FirstOrDefault();
     }
 
-    public async Task<int> PostPurchase(int supplierId, string userName)
+    public async Task<int> PostPurchase(PurchaseRequestDTO purchaseRequest)
     {
       var spString = "[dbo].[Usp_Purchases_INS] @pi_SupplierId, @pi_Username";
       try
@@ -34,8 +34,8 @@ namespace POS.Data.Purchases
           spString,
           new
           {
-            pi_SupplierId = supplierId,
-            pi_Username = userName,
+            pi_SupplierId = purchaseRequest.SupplierId,
+            pi_Username = purchaseRequest.UserName,
           },
           transaction: _dbTransaction)
         ).FirstOrDefault();
@@ -46,21 +46,18 @@ namespace POS.Data.Purchases
       }
     }
 
-    public async Task<int> UpdatePurchase(Purchase purchase)
+    public async Task<int> UpdatePurchase(PurchaseRequestDTO purchaseRequest)
     {
-      string spString = "[dbo].[Usp_Purchases_UPD] @pi_PurchaseId, @pi_SupplierId, @pi_UserId, @pd_Subtotal, @pd_Taxes, @pd_Total, @pdt_OrderDate";
+      string spString = "[dbo].[Usp_Purchases_UPD] @pi_PurchaseId, @pi_SupplierId, @pi_Username";
       try
       {
         return await _dbConnection.ExecuteAsync(
           spString,
           new
           {
-            pi_PurchaseId = purchase.Id,
-            pi_UserId = purchase.UserId,
-            pd_Subtotal = purchase.Subtotal,
-            pd_Taxes = purchase.Taxes,
-            pd_Total = purchase.Total,
-            pdt_OrderDate = purchase.OrderDate,
+            pi_PurchaseId = purchaseRequest.Id,
+            pi_SupplierId = purchaseRequest.SupplierId,
+            pi_Username = purchaseRequest.UserName,
           },
           transaction: _dbTransaction);
       }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using POS.Business.Purchases;
+using POS.Common.DTOs;
 using POS.Common.Models;
 
 namespace POS.API.Controllers
@@ -22,12 +23,12 @@ namespace POS.API.Controllers
       => Ok(await _service.GetPurchaseById(purchaseId));
 
     [HttpPost]
-    public async Task<ActionResult> PostPurchase([FromBody] int supplierId, [FromBody] string userName)
-      => Ok(await _service.PostPurchase(supplierId, userName));
+    public async Task<ActionResult> PostPurchase(PurchaseRequestDTO purchaseRequest)
+      => Ok(await _service.PostPurchase(purchaseRequest));
 
     [HttpPut]
-    public async Task<ActionResult> UpdatePurchase(Purchase purchase)
-      => Ok(await _service.UpdatePurchase(purchase));
+    public async Task<ActionResult> UpdatePurchase(PurchaseRequestDTO purchaseRequest)
+      => Ok(await _service.UpdatePurchase(purchaseRequest));
 
     [HttpDelete("{purchaseId:int}")]
     public async Task<ActionResult> DeletePurchase(int purchaseId)

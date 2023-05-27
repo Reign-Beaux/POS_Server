@@ -14,17 +14,17 @@ namespace POS.Business.Purchases
     public async Task<Purchase> GetPurchaseById(int PurchaseId)
       => await _unitOfWork.PurchasesRepository.GetPurchaseById(PurchaseId);
 
-    public async Task<POSTransactionResult> PostPurchase(int supplierId, string userName)
+    public async Task<POSTransactionResult> PostPurchase(PurchaseRequestDTO purchaseRequest)
     {
-      var idResult = await _unitOfWork.PurchasesRepository.PostPurchase(supplierId, userName);
+      var idResult = await _unitOfWork.PurchasesRepository.PostPurchase(purchaseRequest);
       _unitOfWork.Commit();
 
       return new() { IntegerReturnValue = idResult };
     }
 
-    public async Task<POSTransactionResult> UpdatePurchase(Purchase Purchase)
+    public async Task<POSTransactionResult> UpdatePurchase(PurchaseRequestDTO purchaseRequest)
     {
-      var response = await _unitOfWork.PurchasesRepository.UpdatePurchase(Purchase);
+      var response = await _unitOfWork.PurchasesRepository.UpdatePurchase(purchaseRequest);
       _unitOfWork.Commit();
 
       return new() { IntegerReturnValue = response };
