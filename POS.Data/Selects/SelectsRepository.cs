@@ -14,6 +14,12 @@ namespace POS.Data.Selects
       return (await _dbConnection.QueryAsync<SelectDTO>(query, transaction: _dbTransaction)).ToList();
     }
 
+    public async Task<List<SelectDTO>> GetArticles()
+    {
+      var query = "SELECT [A].[Id] AS [Value], CONCAT([A].[Code], ' | ', [A].[Description]) AS [Text] FROM [dbo].[Articles] [A]";
+      return (await _dbConnection.QueryAsync<SelectDTO>(query, transaction: _dbTransaction)).ToList();
+    }
+
     public async Task<List<SelectDTO>> GetArticlesTypes()
     {
       var query = "SELECT [AT].[Id] AS [Value], [AT].[Description] AS [Text] FROM [dbo].[ArticleTypes] [AT]";

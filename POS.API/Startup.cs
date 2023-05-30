@@ -17,7 +17,14 @@ namespace POS.API
       services.AddCors(options =>
       {
         var frontURL = _configuration.GetValue<string>("CientURL");
-        options.AddPolicy("AllowWebApp", builder => builder.WithOrigins(frontURL)
+        var mobileURL = _configuration.GetValue<string>("MobileURL");
+        var allowedOrigins = new List<string>
+        {
+            frontURL,
+            mobileURL
+        };
+
+        options.AddPolicy("AllowWebApp", builder => builder.WithOrigins(allowedOrigins.ToArray())
                                                             .AllowAnyHeader()
                                                             .AllowAnyMethod());
       });

@@ -10,6 +10,9 @@ namespace POS.Business.Selects
     public async Task<List<SelectDTO>> GetAreas()
       => await _unitOfWork.SelectsRepository.GetAreas();
 
+    public async Task<List<SelectDTO>> GetArticles()
+      => await _unitOfWork.SelectsRepository.GetArticles();
+
     public async Task<List<SelectDTO>> GetArticlesTypes()
       => await _unitOfWork.SelectsRepository.GetArticlesTypes();
 

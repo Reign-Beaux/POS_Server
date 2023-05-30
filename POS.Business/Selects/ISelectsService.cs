@@ -5,6 +5,7 @@ namespace POS.Business.Selects
   public interface ISelectsService
   {
     Task<List<SelectDTO>> GetAreas();
+    Task<List<SelectDTO>> GetArticles();
     Task<List<SelectDTO>> GetArticlesTypes();
     Task<List<SelectDTO>> GetBrands();
     Task<List<SelectDTO>> GetEmployees();
