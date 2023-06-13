@@ -93,7 +93,7 @@ namespace POS.Data.Roles
 
     public async Task UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures)
     {
-      string spString = "EXECUTE [dbo].[Usp_Role_Features_MRG]";
+      string spString = "[dbo].[Usp_Role_Features_MRG]";
       var list = roleFeatures.Select(x => new RoleFeatures
       {
         RoleId = x.RoleId,
@@ -106,7 +106,11 @@ namespace POS.Data.Roles
 
       try
       {
-        await _dbConnection.QueryAsync(spString, parameters, transaction: _dbTransaction);
+        await _dbConnection.QueryAsync(
+          spString,
+          parameters,
+          commandType: CommandType.StoredProcedure,
+          transaction: _dbTransaction);
       }
       catch (Exception ex)
       {

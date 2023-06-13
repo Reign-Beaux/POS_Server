@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using POS.Business.Roles;
 using POS.Common.Models;
-using POS.Common.TableTypes;
 
 namespace POS.API.Controllers
 {
