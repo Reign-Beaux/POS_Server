@@ -22,6 +22,24 @@ namespace POS.Business.Selects
     public async Task<List<SelectDTO>> GetEmployees()
       => await _unitOfWork.SelectsRepository.GetEmployees();
 
+    public async Task<List<SelectDTO>> GetFeatures()
+      => await _unitOfWork.SelectsRepository.GetFeatures();
+
+    public async Task<List<SelectDTO>> GetFeaturesByRole(int roleId)
+    {
+      var features = await _unitOfWork.FeaturesRepository.GetFeaturesByRole(roleId);
+      var convertSelect = new List<SelectDTO>();
+      foreach (var feature in features)
+      {
+        var convert = new SelectDTO();
+        convert.Text = feature.Description;
+        convert.Value = feature.Id;
+        convertSelect.Add(convert);
+      }
+
+      return convertSelect;
+    }
+
     public async Task<List<SelectDTO>> GetRoles()
       => await _unitOfWork.SelectsRepository.GetRoles();
 

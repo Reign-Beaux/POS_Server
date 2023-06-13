@@ -32,6 +32,14 @@ namespace POS.API.Controllers
     public async Task<ActionResult> GetEmployees()
       => Ok(await _service.GetEmployees());
 
+    [HttpGet("GetFeatures")]
+    public async Task<ActionResult> GetFeatures()
+      => Ok(await _service.GetFeatures());
+
+    [HttpGet("GetFeaturesByRole/{roleId:int}")]
+    public async Task<ActionResult> GetFeaturesByRole(int roleId)
+      => Ok(await _service.GetFeaturesByRole(roleId));
+
     [HttpGet("GetRoles")]
     public async Task<ActionResult> GetRoles()
       => Ok(await _service.GetRoles());

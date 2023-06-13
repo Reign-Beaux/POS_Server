@@ -7,6 +7,7 @@ using POS.Data.Employees;
 using POS.Data.Features;
 using POS.Data.Inventories;
 using POS.Data.Login;
+using POS.Data.PurchaseDetails;
 using POS.Data.Purchases;
 using POS.Data.Roles;
 using POS.Data.Selects;
@@ -32,6 +33,7 @@ namespace POS.Data.UnitsOfWork
     public IInventoriesRepository InventoriesRepository { get; }
     public ILoginRepository LoginRepository { get; }
     public IPurchasesRepository PurchasesRepository { get; }
+    public IPurchaseDetailsRepository PurchaseDetailsRepository { get; }
     public IRolesRepository RolesRepository { get; }
     public ISelectsRepository SelectsRepository { get; }
     public ISuppliersRepository SuppliersRepository { get; }
@@ -53,6 +55,7 @@ namespace POS.Data.UnitsOfWork
       InventoriesRepository = new InventoriesRepository(_dbTransaction);
       LoginRepository = new LoginRepository(_dbTransaction);
       PurchasesRepository = new PurchasesRepository(_dbTransaction);
+      PurchaseDetailsRepository = new PurchaseDetailsRepository(_dbTransaction);
       RolesRepository = new RolesRepository(_dbTransaction);
       SelectsRepository = new SelectsRepository(_dbTransaction);
       SuppliersRepository = new SuppliersRepository(_dbTransaction);

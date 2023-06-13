@@ -6,6 +6,7 @@ using POS.Data.Employees;
 using POS.Data.Features;
 using POS.Data.Inventories;
 using POS.Data.Login;
+using POS.Data.PurchaseDetails;
 using POS.Data.Purchases;
 using POS.Data.Roles;
 using POS.Data.Selects;
@@ -25,6 +26,7 @@ namespace POS.Data.UnitsOfWork
     public IInventoriesRepository InventoriesRepository { get; }
     public ILoginRepository LoginRepository { get; }
     public IPurchasesRepository PurchasesRepository { get; }
+    public IPurchaseDetailsRepository PurchaseDetailsRepository { get; }
     public IRolesRepository RolesRepository { get; }
     public ISelectsRepository SelectsRepository { get; }
     public ISuppliersRepository SuppliersRepository { get; }

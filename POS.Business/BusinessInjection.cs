@@ -6,6 +6,7 @@ using POS.Business.Brands;
 using POS.Business.Employess;
 using POS.Business.Inventories;
 using POS.Business.Login;
+using POS.Business.PurchaseDetails;
 using POS.Business.Purchases;
 using POS.Business.Roles;
 using POS.Business.Selects;
@@ -27,6 +28,7 @@ namespace POS.Business
       services.AddScoped<IInventoriesService, InventoriesService>();
       services.AddScoped<ILoginService, LoginService>();
       services.AddScoped<IPurchasesService, PurchasesService>();
+      services.AddScoped<IPurchaseDetailsService, PurchaseDetailsService>();
       services.AddScoped<IRolesService, RolesService>();
       services.AddScoped<ISelectsService, SelectService>();
       services.AddScoped<ISuppliersService, SuppliersService>();
