@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using DapperParameters;
 using POS.Common.Models;
 using System.Data;
 
@@ -87,6 +88,29 @@ namespace POS.Data.Roles
       catch (Exception ex)
       {
         throw new Exception("Error to DELETE Role: " + ex.Message);
+      }
+    }
+
+    public async Task UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures)
+    {
+      string spString = "EXECUTE [dbo].[Usp_Role_Features_MRG]";
+      var list = roleFeatures.Select(x => new RoleFeatures
+      {
+        RoleId = x.RoleId,
+        FeatureId = x.FeatureId,
+      });
+
+      var parameters = new DynamicParameters();
+      parameters.Add("@pi_RoleId", roleId);
+      parameters.AddTable("@pt_RoleFeatures", "[dbo].[Role_Features_Type]", list);
+
+      try
+      {
+        await _dbConnection.QueryAsync(spString, parameters, transaction: _dbTransaction);
+      }
+      catch (Exception ex)
+      {
+        throw new Exception("Error to Update RoleFeatures: " + ex.Message);
       }
     }
   }

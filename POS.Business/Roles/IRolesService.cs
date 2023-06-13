@@ -9,5 +9,6 @@ namespace POS.Business.Roles
     Task<POSTransactionResult> PostRole(Role role);
     Task<POSTransactionResult> DeleteRole(int roleId);
     Task<POSTransactionResult> UpdateRole(Role role);
+    Task<POSTransactionResult> UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures);
   }
 }

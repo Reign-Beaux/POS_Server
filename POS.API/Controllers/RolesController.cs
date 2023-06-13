@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using POS.Business.Roles;
 using POS.Common.Models;
+using POS.Common.TableTypes;
 
 namespace POS.API.Controllers
 {
@@ -32,5 +33,9 @@ namespace POS.API.Controllers
     [HttpDelete("{roleId:int}")]
     public async Task<ActionResult> DeleteRole(int roleId)
       => Ok(await _service.DeleteRole(roleId));
+
+    [HttpPost("UpdateRoleFeature/{roleId}")]
+    public async Task<ActionResult> UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures)
+      => Ok(await _service.UpdateRoleFeature(roleId, roleFeatures));
   }
 }
