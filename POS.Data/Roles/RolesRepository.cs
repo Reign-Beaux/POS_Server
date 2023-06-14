@@ -99,7 +99,7 @@ namespace POS.Data.Roles
 
       var parameters = new DynamicParameters();
       parameters.Add("@pi_RoleId", roleId);
-      parameters.AddTable("@pt_RoleFeatures", "[dbo].[Ids_Type]", list);
+      parameters.AddTable("@pt_FeaturesIds", "[dbo].[Ids_Type]", list);
 
       try
       {
