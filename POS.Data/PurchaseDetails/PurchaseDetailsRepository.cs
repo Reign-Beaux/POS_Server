@@ -12,28 +12,28 @@ namespace POS.Data.PurchaseDetails
 
     public async Task TestMerge(int testNumber, List<IdsTT> ids)
     {
-      string spString = "[dbo].[Usp_TestMerge]";
-      var list = ids.Select(x => new IdsTT {
-        Id = x.Id,
-        ToUpdate = x.ToUpdate
-      });
-      var parameters = new DynamicParameters();
+      //string spString = "[dbo].[Usp_TestMerge]";
+      //var list = ids.Select(x => new IdsTT {
+      //  Id = x.Id,
+      //  ToUpdate = x.ToUpdate
+      //});
+      //var parameters = new DynamicParameters();
 
-      parameters.Add("@pi_TestNumber", testNumber);
-      parameters.AddTable("@pt_TestNumber2", "[dbo].[Ids_Type]", list);
+      //parameters.Add("@pi_TestNumber", testNumber);
+      //parameters.AddTable("@pt_TestNumber2", "[dbo].[Ids_Type]", list);
 
-      try
-      {
-        await _dbConnection.QueryAsync(
-          spString,
-          parameters,
-          commandType: CommandType.StoredProcedure,
-          transaction: _dbTransaction);
-      }
-      catch (Exception ex)
-      {
-        throw new Exception("Error: " + ex.Message);
-      }
+      //try
+      //{
+      //  await _dbConnection.QueryAsync(
+      //    spString,
+      //    parameters,
+      //    commandType: CommandType.StoredProcedure,
+      //    transaction: _dbTransaction);
+      //}
+      //catch (Exception ex)
+      //{
+      //  throw new Exception("Error: " + ex.Message);
+      //}
     }
 
     public async Task UpdatePurchaseDetail(int purchaseId, List<PurchaseDetail> details)

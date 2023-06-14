@@ -9,6 +9,6 @@ namespace POS.Data.Roles
     Task<int> PostRole(Role role);
     Task<int> UpdateRole(Role role);
     Task<int> DeleteRole(int roleId);
-    Task UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures);
+    Task UpdateRoleFeature(int roleId, List<int> featuresIds);
   }
 }

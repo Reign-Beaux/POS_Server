@@ -38,9 +38,9 @@ namespace POS.Business.Roles
       return new() { IntegerReturnValue = response };
     }
 
-    public async Task<POSTransactionResult> UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures)
+    public async Task<POSTransactionResult> UpdateRoleFeature(int roleId, List<int> featuresIds)
     {
-      await _unitOfWork.RolesRepository.UpdateRoleFeature(roleId, roleFeatures);
+      await _unitOfWork.RolesRepository.UpdateRoleFeature(roleId, featuresIds);
       _unitOfWork.Commit();
 
       return new POSTransactionResult();

@@ -34,7 +34,7 @@ namespace POS.API.Controllers
       => Ok(await _service.DeleteRole(roleId));
 
     [HttpPost("UpdateRoleFeature/{roleId}")]
-    public async Task<ActionResult> UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures)
-      => Ok(await _service.UpdateRoleFeature(roleId, roleFeatures));
+    public async Task<ActionResult> UpdateRoleFeature(int roleId, List<int> featuresIds)
+      => Ok(await _service.UpdateRoleFeature(roleId, featuresIds));
   }
 }

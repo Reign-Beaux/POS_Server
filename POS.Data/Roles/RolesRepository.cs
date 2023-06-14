@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DapperParameters;
 using POS.Common.Models;
+using POS.Common.TableTypes;
 using System.Data;
 
 namespace POS.Data.Roles
@@ -91,18 +92,14 @@ namespace POS.Data.Roles
       }
     }
 
-    public async Task UpdateRoleFeature(int roleId, List<RoleFeatures> roleFeatures)
+    public async Task UpdateRoleFeature(int roleId, List<int> featuresIds)
     {
       string spString = "[dbo].[Usp_Role_Features_MRG]";
-      var list = roleFeatures.Select(x => new RoleFeatures
-      {
-        RoleId = x.RoleId,
-        FeatureId = x.FeatureId,
-      });
+      var list = featuresIds.Select(x => new IdsTT { Id = x });
 
       var parameters = new DynamicParameters();
       parameters.Add("@pi_RoleId", roleId);
-      parameters.AddTable("@pt_RoleFeatures", "[dbo].[Role_Features_Type]", list);
+      parameters.AddTable("@pt_RoleFeatures", "[dbo].[Ids_Type]", list);
 
       try
       {
