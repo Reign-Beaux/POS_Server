@@ -1,7 +1,6 @@
 ﻿using Dapper;
-using DapperParameters;
+using POS.Common.DTOs;
 using POS.Common.Models;
-using POS.Common.TableTypes;
 using System.Data;
 
 namespace POS.Data.PurchaseDetails
@@ -10,7 +9,7 @@ namespace POS.Data.PurchaseDetails
   {
     public PurchaseDetailsRepository(IDbTransaction dbTransaction) : base(dbTransaction) { }
 
-    public async Task<List<PurchaseDetail>> GetPurchaseDetails(int purchaseId)
+    public async Task<List<PurchaseDetailDTO>> GetPurchaseDetails(int purchaseId)
     {
       string spString = "[dbo].[Usp_PurchaseDetail_CON] @pi_PurchaseId";
       return (await _dbConnection.QueryAsync<PurchaseDetail>(

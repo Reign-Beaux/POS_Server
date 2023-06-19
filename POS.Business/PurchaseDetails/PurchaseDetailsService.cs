@@ -1,4 +1,5 @@
-﻿using POS.Common.Models;
+﻿using POS.Common.DTOs;
+using POS.Common.Models;
 using POS.Common.TableTypes;
 using POS.Data.UnitsOfWork;
 
@@ -8,7 +9,7 @@ namespace POS.Business.PurchaseDetails
   {
     public PurchaseDetailsService(IUnitOfWork unitOfWork) : base(unitOfWork) { }
 
-    public async Task<List<PurchaseDetail>> GetPurchaseDetails(int purchaseId)
+    public async Task<List<PurchaseDetailDTO>> GetPurchaseDetails(int purchaseId)
       => await _unitOfWork.PurchaseDetailsRepository.GetPurchaseDetails(purchaseId);
 
     public async Task<PurchaseDetail> GetPurchaseDetailById(int purchaseDetailId)
