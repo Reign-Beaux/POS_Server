@@ -1,11 +1,13 @@
 ﻿using POS.Common.Models;
-using POS.Common.TableTypes;
 
 namespace POS.Data.PurchaseDetails
 {
   public interface IPurchaseDetailsRepository
   {
-    Task UpdatePurchaseDetail(int purchaseId, List<PurchaseDetail> details);
-    Task TestMerge(int testNumber, List<IdsTT> ids);
+    Task<List<PurchaseDetail>> GetPurchaseDetails(int purchaseId);
+    Task<PurchaseDetail> GetPurchaseDetailById(int purchaseDetailId);
+    Task<int> PostPurchaseDetail(PurchaseDetail purchaseDetail);
+    Task<int> UpdatePurchaseDetail(PurchaseDetail purchaseDetail);
+    Task<int> DeletePurchaseDetail(int purchaseDetailId);
   }
 }
