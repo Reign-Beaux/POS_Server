@@ -12,7 +12,7 @@ namespace POS.Data.PurchaseDetails
     public async Task<List<PurchaseDetailDTO>> GetPurchaseDetails(int purchaseId)
     {
       string spString = "[dbo].[Usp_PurchaseDetail_CON] @pi_PurchaseId";
-      return (await _dbConnection.QueryAsync<PurchaseDetail>(
+      return (await _dbConnection.QueryAsync<PurchaseDetailDTO>(
         spString,
         new { pi_PurchaseId = purchaseId },
         transaction: _dbTransaction)).ToList();

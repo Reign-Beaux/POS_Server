@@ -14,11 +14,11 @@ namespace POS.API.Controllers
     public PurchaseDetailsController(IPurchaseDetailsService service)
     => _service = service;
 
-    [HttpGet("{purchaseId:int}")]
+    [HttpGet("GetPurchaseDetails/{purchaseId:int}")]
     public async Task<ActionResult> GetPurchaseDetails(int purchaseId)
       => Ok(await _service.GetPurchaseDetails(purchaseId));
 
-    [HttpGet("{purchaseDetailId:int}")]
+    [HttpGet("GetPurchaseDetailById/{purchaseDetailId:int}")]
     public async Task<ActionResult> GetPurchaseDetailById(int purchaseDetailId)
       => Ok(await _service.GetPurchaseDetailById(purchaseDetailId));
 
