@@ -20,7 +20,8 @@ namespace POS.Data.Selects
     {
       var query =
         "SELECT [A].[Id] AS [Value], CONCAT([A].[Code], ' | ', [A].[Description]) AS [Text] " +
-        "FROM [dbo].[Articles] [A]";
+        "FROM [dbo].[Articles] [A] " +
+        "WHERE [A].[IsActive] = 1";
       return (await _dbConnection.QueryAsync<SelectDTO>(query, transaction: _dbTransaction)).ToList();
     }
 

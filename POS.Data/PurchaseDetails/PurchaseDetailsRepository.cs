@@ -31,7 +31,7 @@ namespace POS.Data.PurchaseDetails
     public async Task<int> PostPurchaseDetail(PurchaseDetail purchaseDetail)
     {
       var spString =
-        "[dbo].[Usp_PurchaseDetail_INS] @pi_PurchaseId, @pi_ArticleId, @pi_QuantitySold @pd_Price @pd_Subtotal @pd_Taxes @pd_Total";
+        "[dbo].[Usp_PurchaseDetail_INS] @pi_PurchaseId, @pi_ArticleId, @pi_QuantitySold, @pd_Price, @pd_Subtotal, @pd_Taxes, @pd_Total";
       try
       {
         return (await _dbConnection.QueryAsync<int>(
@@ -58,7 +58,7 @@ namespace POS.Data.PurchaseDetails
     public async Task<int> UpdatePurchaseDetail(PurchaseDetail purchaseDetail)
     {
       string spString =
-        "[dbo].[Usp_PurchaseDetail_INS] @pi_PurchaseDetailId, @pi_PurchaseId, @pi_ArticleId, @pi_QuantitySold @pd_Price @pd_Subtotal @pd_Taxes @pd_Total";
+        "[dbo].[Usp_PurchaseDetail_INS] @pi_PurchaseDetailId, @pi_PurchaseId, @pi_ArticleId, @pi_QuantitySold, @pd_Price, @pd_Subtotal, @pd_Taxes, @pd_Total";
       try
       {
         return await _dbConnection.ExecuteAsync(
