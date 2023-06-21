@@ -11,21 +11,28 @@ namespace POS.Data.PurchaseDetails
 
     public async Task<List<PurchaseDetailDTO>> GetPurchaseDetails(int purchaseId)
     {
-      string spString = "[dbo].[Usp_PurchaseDetail_CON] @pi_PurchaseId";
+      string spString = "[dbo].[Usp_PurchaseDetail_CON] @ps_QueryType, @pi_Id";
       return (await _dbConnection.QueryAsync<PurchaseDetailDTO>(
         spString,
-        new { pi_PurchaseId = purchaseId },
+        new
+        {
+          ps_QueryType = "byPurchase",
+          pi_Id = purchaseId
+        },
         transaction: _dbTransaction)).ToList();
     }
 
     public async Task<PurchaseDetail> GetPurchaseDetailById(int purchaseDetailId)
     {
-      string spString = "[dbo].[Usp_PurchaseDetail_CON] @pi_PurchaseDetailId";
-      var response = (await _dbConnection.QueryAsync<PurchaseDetail>(
+      string spString = "[dbo].[Usp_PurchaseDetail_CON] @ps_QueryType, @pi_Id";
+      return await _dbConnection.QuerySingleOrDefaultAsync<PurchaseDetail>(
         spString,
-        new { pi_PurchaseDetailId = purchaseDetailId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        new
+        {
+          ps_QueryType = "byId",
+          pi_Id = purchaseDetailId
+        },
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostPurchaseDetail(PurchaseDetail purchaseDetail)
@@ -58,7 +65,7 @@ namespace POS.Data.PurchaseDetails
     public async Task<int> UpdatePurchaseDetail(PurchaseDetail purchaseDetail)
     {
       string spString =
-        "[dbo].[Usp_PurchaseDetail_INS] @pi_PurchaseDetailId, @pi_PurchaseId, @pi_ArticleId, @pi_QuantitySold, @pd_Price, @pd_Subtotal, @pd_Taxes, @pd_Total";
+        "[dbo].[Usp_PurchaseDetail_UPD] @pi_PurchaseDetailId, @pi_PurchaseId, @pi_ArticleId, @pi_QuantitySold, @pd_Price, @pd_Subtotal, @pd_Taxes, @pd_Total";
       try
       {
         return await _dbConnection.ExecuteAsync(

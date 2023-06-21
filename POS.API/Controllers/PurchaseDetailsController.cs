@@ -30,7 +30,7 @@ namespace POS.API.Controllers
     public async Task<ActionResult> UpdatePurchaseDetail(PurchaseDetail purchaseDetail)
       => Ok(await _service.UpdatePurchaseDetail(purchaseDetail));
 
-    [HttpDelete("{areaId:int}")]
+    [HttpDelete("{purchaseDetailId:int}")]
     public async Task<ActionResult> DeletePurchaseDetail(int purchaseDetailId)
       => Ok(await _service.DeletePurchaseDetail(purchaseDetailId));
   }
