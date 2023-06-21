@@ -19,18 +19,10 @@ namespace POS.Data.Roles
     public async Task<Role> GetRoleById(int id)
     {
       string spString = "[dbo].[Usp_Roles_CON] @pi_RoleId";
-      try
-      {
-        var response = (await _dbConnection.QueryAsync<Role>(
-          spString,
-          new { pi_RoleId = id },
-          transaction: _dbTransaction)).ToList();
-        return response.FirstOrDefault();
-      }
-      catch (Exception ex)
-      {
-        throw new Exception("Error retrieving the Roles: " + ex.Message);
-      }
+      return await _dbConnection.QuerySingleOrDefaultAsync<Role>(
+        spString,
+        new { pi_RoleId = id },
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostRole(Role role)

@@ -17,11 +17,10 @@ namespace POS.Data.ArticleTypes
     public async Task<ArticleType> GetArticlesTypesById(int articleTypeId)
     {
       string spString = "[dbo].[Usp_ArticleTypes_CON] @pi_ArticleTypeId";
-      var response = (await _dbConnection.QueryAsync<ArticleType>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<ArticleType>(
         spString,
         new { pi_ArticleTypeId = articleTypeId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostArticlesTypes(ArticleType articleType)

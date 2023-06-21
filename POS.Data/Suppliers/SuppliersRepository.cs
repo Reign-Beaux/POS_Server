@@ -18,11 +18,10 @@ namespace POS.Data.Suppliers
     public async Task<Supplier> GetSupplierById(int supplierId)
     {
       string spString = "[dbo].[Usp_Suppliers_CON] @pi_SupplierId";
-      var response = (await _dbConnection.QueryAsync<Supplier>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<Supplier>(
         spString,
         new { pi_SupplierId = supplierId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostSupplier(Supplier supplier)

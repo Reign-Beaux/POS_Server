@@ -18,11 +18,10 @@ namespace POS.Data.Purchases
     public async Task<Purchase> GetPurchaseById(int purchaseId)
     {
       string spString = "[dbo].[Usp_Purchases_CON] @pi_PurchaseId";
-      var response = (await _dbConnection.QueryAsync<Purchase>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<Purchase>(
         spString,
         new { pi_PurchaseId = purchaseId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostPurchase(PurchaseRequestDTO purchaseRequest)

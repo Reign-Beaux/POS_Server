@@ -17,11 +17,10 @@ namespace POS.Data.Areas
     public async Task<Area> GetAreaById(int areaId)
     {
       string spString = "[dbo].[Usp_Areas_CON] @pi_AreaId";
-      var response = (await _dbConnection.QueryAsync<Area>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<Area>(
         spString,
         new { pi_AreaId = areaId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostArea(Area area)

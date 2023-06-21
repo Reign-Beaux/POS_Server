@@ -24,11 +24,10 @@ namespace POS.Data.Users
     public async Task<User> GetUserById(int userId)
     {
       string spString = "[dbo].[Usp_Users_CON] @pi_UserId";
-      var response = (await _dbConnection.QueryAsync<User>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<User>(
         spString,
         new { pi_UserId = userId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostUser(User user)

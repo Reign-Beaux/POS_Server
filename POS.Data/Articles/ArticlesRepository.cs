@@ -18,11 +18,10 @@ namespace POS.Data.Articles
     public async Task<Article> GetArticleById(int articleId)
     {
       string spString = "[dbo].[Usp_Articles_CON] @pi_ArticleId";
-      var response = (await _dbConnection.QueryAsync<Article>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<Article>(
         spString,
         new { pi_ArticleId = articleId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostArticle(Article article)

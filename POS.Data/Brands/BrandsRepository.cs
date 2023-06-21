@@ -17,11 +17,10 @@ namespace POS.Data.Brands
     public async Task<Brand> GetBrandById(int brandId)
     {
       string spString = "[dbo].[Usp_Brands_CON] @pi_BrandId";
-      var response = (await _dbConnection.QueryAsync<Brand>(
+      return await _dbConnection.QuerySingleOrDefaultAsync<Brand>(
         spString,
         new { pi_BrandId = brandId },
-        transaction: _dbTransaction)).ToList();
-      return response.FirstOrDefault();
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostBrand(Brand brand)

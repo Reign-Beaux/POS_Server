@@ -18,18 +18,10 @@ namespace POS.Data.Employees
     public async Task<Employee> GetEmployeeById(int employeeId)
     {
       string spString = "[dbo].[Usp_Employees_CON] @pi_EmployeeId";
-      try
-      {
-        var response = (await _dbConnection.QueryAsync<Employee>(
-          spString,
-          new { pi_EmployeeId = employeeId },
-          transaction: _dbTransaction)).ToList();
-        return response.FirstOrDefault();
-      }
-      catch (Exception ex)
-      {
-        throw new Exception("Error retrieving the Employees: " + ex.Message);
-      }
+      return await _dbConnection.QuerySingleOrDefaultAsync<Employee>(
+        spString,
+        new { pi_EmployeeId = employeeId },
+        transaction: _dbTransaction);
     }
 
     public async Task<int> PostEmployee(Employee employee)
