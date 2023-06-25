@@ -10,5 +10,6 @@ namespace POS.Data.Purchases
     Task<int> PostPurchase(PurchaseRequestDTO purchaseRequest);
     Task<int> UpdatePurchase(PurchaseRequestDTO purchaseRequest);
     Task<int> DeletePurchase(int purchaseId);
+    Task<int> CalculateAmount(int purchaseId);
   }
 }

@@ -73,13 +73,28 @@ namespace POS.Data.Purchases
       {
         return await _dbConnection.ExecuteAsync(
           spString,
-          new
-          { pi_PurchaseId = purchaseId },
+          new { pi_PurchaseId = purchaseId },
           transaction: _dbTransaction);
       }
       catch (Exception ex)
       {
         throw new Exception("Error to DELETE Purchase: " + ex.Message);
+      }
+    }
+
+    public async Task<int> CalculateAmount(int purchaseId)
+    {
+      string spString = "[dbo].[Purchase_CalculateAmounts] @pi_PurchaseId";
+      try
+      {
+        return await _dbConnection.ExecuteAsync(
+          spString,
+          new { pi_PurchaseId = purchaseId },
+          transaction: _dbTransaction);
+      }
+      catch (Exception ex)
+      {
+        throw new Exception("Error to Calculate Amounts to Purchase: " + ex.Message);
       }
     }
   }

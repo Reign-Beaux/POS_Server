@@ -94,15 +94,14 @@ namespace POS.Data.PurchaseDetails
       string spString = "[dbo].[Usp_PurchaseDetail_DEL] @pi_PurchaseDetailId";
       try
       {
-        return await _dbConnection.ExecuteAsync(
-          spString,
-          new
-          { pi_PurchaseDetailId = purchaseDetailId },
-          transaction: _dbTransaction);
+        return await _dbConnection.QueryFirstOrDefaultAsync<int>(
+            spString,
+            new { pi_PurchaseDetailId = purchaseDetailId },
+            transaction: _dbTransaction);
       }
       catch (Exception ex)
       {
-        throw new Exception("Error to DELETE Area: " + ex.Message);
+        throw new Exception("Error to DELETE PurchaseDetail: " + ex.Message);
       }
     }
   }

@@ -1,6 +1,5 @@
 ﻿using POS.Common.DTOs;
 using POS.Common.Models;
-using POS.Common.TableTypes;
 using POS.Data.UnitsOfWork;
 
 namespace POS.Business.PurchaseDetails
@@ -18,6 +17,7 @@ namespace POS.Business.PurchaseDetails
     public async Task<POSTransactionResult> PostPurchaseDetail(PurchaseDetail purchaseDetail)
     {
       var idResult = await _unitOfWork.PurchaseDetailsRepository.PostPurchaseDetail(purchaseDetail);
+      await _unitOfWork.PurchasesRepository.CalculateAmount(purchaseDetail.PurchaseId);
       _unitOfWork.Commit();
 
       return new() { IntegerReturnValue = idResult };
@@ -26,6 +26,7 @@ namespace POS.Business.PurchaseDetails
     public async Task<POSTransactionResult> UpdatePurchaseDetail(PurchaseDetail purchaseDetail)
     {
       var response = await _unitOfWork.PurchaseDetailsRepository.UpdatePurchaseDetail(purchaseDetail);
+      await _unitOfWork.PurchasesRepository.CalculateAmount(purchaseDetail.PurchaseId);
       _unitOfWork.Commit();
 
       return new() { IntegerReturnValue = response };
@@ -33,7 +34,9 @@ namespace POS.Business.PurchaseDetails
 
     public async Task<POSTransactionResult> DeletePurchaseDetail(int purchaseDetailId)
     {
+      var purchaseDetail = await _unitOfWork.PurchaseDetailsRepository.GetPurchaseDetailById(purchaseDetailId);
       var response = await _unitOfWork.PurchaseDetailsRepository.DeletePurchaseDetail(purchaseDetailId);
+      await _unitOfWork.PurchasesRepository.CalculateAmount(purchaseDetail.PurchaseId);
       _unitOfWork.Commit();
 
       return new() { IntegerReturnValue = response };
