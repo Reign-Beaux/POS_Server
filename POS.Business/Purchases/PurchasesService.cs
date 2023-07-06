@@ -37,5 +37,19 @@ namespace POS.Business.Purchases
 
       return new() { IntegerReturnValue = response };
     }
+
+    public async Task<POSTransactionResult> UpdateStatus(int purchaseId, int status)
+    {
+      var detail = await _unitOfWork.PurchaseDetailsRepository.GetPurchaseDetails(purchaseId);
+      if (detail.Count == 0)
+      {
+        throw new Exception("Without detail");
+      }
+
+      var response = await _unitOfWork.PurchasesRepository.UpdateStatus(purchaseId, status); 
+      _unitOfWork.Commit();
+
+      return new() { IntegerReturnValue = response };
+    }
   }
 }

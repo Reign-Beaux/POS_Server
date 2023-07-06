@@ -2,6 +2,7 @@
 using POS.Common.DTOs;
 using POS.Common.Models;
 using System.Data;
+using System.Net.NetworkInformation;
 
 namespace POS.Data.Purchases
 {
@@ -95,6 +96,22 @@ namespace POS.Data.Purchases
       catch (Exception ex)
       {
         throw new Exception("Error to Calculate Amounts to Purchase: " + ex.Message);
+      }
+    }
+
+    public async Task<int> UpdateStatus(int purchaseId, int status)
+    {
+      string spString = "[dbo].[Usp_Purchases_UpdateStatus] @pi_PurchaseId, @pi_Status";
+      try
+      {
+        return await _dbConnection.ExecuteAsync(
+          spString,
+          new { pi_PurchaseId = purchaseId, pi_Status = status },
+          transaction: _dbTransaction);
+      }
+      catch (Exception ex)
+      {
+        throw new Exception("Failed to update status: " + ex.Message);
       }
     }
   }

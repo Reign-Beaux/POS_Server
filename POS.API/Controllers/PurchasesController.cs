@@ -33,5 +33,9 @@ namespace POS.API.Controllers
     [HttpDelete("{purchaseId:int}")]
     public async Task<ActionResult> DeletePurchase(int purchaseId)
       => Ok(await _service.DeletePurchase(purchaseId));
+
+    [HttpPut("UpdateStatus/{purchaseId}/{status}")]
+    public async Task<ActionResult> UpdateStatus(int purchaseId, int status)
+      => Ok(await _service.UpdateStatus(purchaseId, status));
   }
 }
